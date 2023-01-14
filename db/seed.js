@@ -1,5 +1,5 @@
 // grab our client with destructuring from the export in index.js
-const { client, getAllUsers, createUser, updateUser, createPost, getAllPosts, updatePost, getPostsByUser, getUserById, createTags, addTagsToPost, getPostsByTagName } = require('./index');
+const { client, getAllUsers, createUser, updateUser, createPost, getAllPosts, updatePost, getPostsByUser, getUserById, createTags, addTagsToPost, getPostsByTagName, getAllTags } = require('./index');
 
 // This function should call a query which drops all tables from our database
 async function dropTables() {
@@ -209,6 +209,10 @@ async function testDB() {
       tags: ["#youcandoanything", "#redfish", "#bluefish"]
     });
     console.log("Results:", updatePostTagsResult);
+
+    console.log("Calling getAllTags");
+    const tags = await getAllTags();
+    console.log("Result", tags);
 
     console.log("Calling getPostsByTagName with #happy");
     const postsWithHappy = await getPostsByTagName("#happy");
